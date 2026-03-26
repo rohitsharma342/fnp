@@ -292,7 +292,7 @@ class AppTheme {
       ),
       contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
     ),
-    tabBarTheme: TabBarTheme(
+    tabBarTheme: TabBarThemeData(
       labelColor: primaryColor,
       unselectedLabelColor: textSecondary,
       indicatorColor: primaryColor,
@@ -320,7 +320,7 @@ class AppTheme {
       elevation: 10,
       modalElevation: 20,
     ),
-    dialogTheme: DialogTheme(
+    dialogTheme: DialogThemeData(
       backgroundColor: surfaceColor,
       elevation: 10,
       shape: RoundedRectangleBorder(
