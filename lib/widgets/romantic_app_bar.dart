@@ -88,25 +88,7 @@ class _RomanticAppBarState extends State<RomanticAppBar>
         title: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (widget.showHeartIcon) ..[
-              AnimatedBuilder(
-                animation: _heartBeatAnimation,
-                builder: (context, child) {
-                  return Transform.scale(
-                    scale: _heartBeatAnimation.value,
-                    child: GestureDetector(
-                      onTap: widget.onHeartTap,
-                      child: Icon(
-                        Icons.favorite,
-                        color: RomanticColors.romanticRed,
-                        size: 24,
-                      ),
-                    ),
-                  );
-                },
-              ),
-              const SizedBox(width: 8),
-            ],
+            if (widget.showHeartIcon) ..._buildHeartIcon(),
             Flexible(
               child: Text(
                 widget.title,
@@ -147,6 +129,28 @@ class _RomanticAppBarState extends State<RomanticAppBar>
         ),
       ),
     );
+  }
+  
+  List<Widget> _buildHeartIcon() {
+    return [
+      AnimatedBuilder(
+        animation: _heartBeatAnimation,
+        builder: (context, child) {
+          return Transform.scale(
+            scale: _heartBeatAnimation.value,
+            child: GestureDetector(
+              onTap: widget.onHeartTap,
+              child: Icon(
+                Icons.favorite,
+                color: RomanticColors.romanticRed,
+                size: 24,
+              ),
+            ),
+          );
+        },
+      ),
+      const SizedBox(width: 8),
+    ];
   }
   
   Widget? _buildDefaultLeading() {

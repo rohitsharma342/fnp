@@ -27,7 +27,7 @@ class _DashboardScreenState extends State<DashboardScreen>
   final TextEditingController _searchController = TextEditingController();
   int _currentNavIndex = 0;
   late AnimationController _heartController;
-  final GlobalKey<FloatingHeartsState> _floatingHeartsKey = GlobalKey();
+  final GlobalKey<FloatingHeartsWidgetState> _floatingHeartsKey = GlobalKey();
 
   @override
   void initState() {
