@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  static const Color primaryColor = Color(0xFFFDD835);
-  static const Color secondaryColor = Color(0xFFFFEB3B);
-  static const Color accentColor = Color(0xFFFFF176);
-  static const Color backgroundColor = Color(0xFFFFFDE7);
+  static const Color primaryColor = Color(0xFFE53935);
+  static const Color secondaryColor = Color(0xFFEF5350);
+  static const Color accentColor = Color(0xFFFFCDD2);
+  static const Color backgroundColor = Color(0xFFFFF5F5);
   static const Color surfaceColor = Colors.white;
   static const Color textPrimary = Color(0xFF2D2D2D);
   static const Color textSecondary = Color(0xFF757575);
   static const Color successColor = Color(0xFF4CAF50);
-  static const Color errorColor = Color(0xFFE53935);
+  static const Color errorColor = Color(0xFFD32F2F);
   static const Color warningColor = Color(0xFFFF9800);
-  static const Color darkYellow = Color(0xFFF57F17);
-  static const Color lightYellow = Color(0xFFFFFDE7);
-  static const Color mediumYellow = Color(0xFFFFEE58);
+  static const Color darkRed = Color(0xFFB71C1C);
+  static const Color lightRed = Color(0xFFFFF5F5);
+  static const Color mediumRed = Color(0xFFEF5350);
 
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
@@ -23,12 +23,12 @@ class AppTheme {
       surface: surfaceColor,
       background: backgroundColor,
       error: errorColor,
-      onPrimary: Colors.black87,
-      onSecondary: Colors.black87,
+      onPrimary: Colors.white,
+      onSecondary: Colors.white,
       onSurface: textPrimary,
       onBackground: textPrimary,
       tertiary: accentColor,
-      outline: darkYellow,
+      outline: darkRed,
     ),
     scaffoldBackgroundColor: backgroundColor,
     fontFamily: 'Roboto',
@@ -44,13 +44,13 @@ class AppTheme {
         fontWeight: FontWeight.w600,
       ),
       iconTheme: const IconThemeData(
-        color: darkYellow,
+        color: darkRed,
       ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: primaryColor,
-        foregroundColor: Colors.black87,
+        foregroundColor: Colors.white,
         elevation: 3,
         shadowColor: primaryColor.withOpacity(0.3),
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
@@ -65,8 +65,8 @@ class AppTheme {
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        foregroundColor: darkYellow,
-        side: const BorderSide(color: darkYellow, width: 1.5),
+        foregroundColor: darkRed,
+        side: const BorderSide(color: darkRed, width: 1.5),
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
@@ -75,7 +75,7 @@ class AppTheme {
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        foregroundColor: darkYellow,
+        foregroundColor: darkRed,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       ),
     ),
@@ -93,7 +93,7 @@ class AppTheme {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(color: darkYellow, width: 2),
+        borderSide: const BorderSide(color: darkRed, width: 2),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
@@ -111,7 +111,7 @@ class AppTheme {
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: surfaceColor,
-      selectedItemColor: darkYellow,
+      selectedItemColor: darkRed,
       unselectedItemColor: textSecondary,
       type: BottomNavigationBarType.fixed,
       elevation: 8,
@@ -120,19 +120,19 @@ class AppTheme {
       ),
     ),
     chipTheme: ChipThemeData(
-      backgroundColor: lightYellow,
+      backgroundColor: lightRed,
       selectedColor: primaryColor.withOpacity(0.3),
       labelStyle: const TextStyle(color: textPrimary),
-      secondaryLabelStyle: const TextStyle(color: darkYellow),
+      secondaryLabelStyle: const TextStyle(color: darkRed),
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),
-      side: BorderSide(color: mediumYellow.withOpacity(0.5)),
+      side: BorderSide(color: mediumRed.withOpacity(0.5)),
     ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: primaryColor,
-      foregroundColor: Colors.black87,
+      foregroundColor: Colors.white,
       elevation: 4,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
@@ -159,7 +159,7 @@ class AppTheme {
         }
         return Colors.transparent;
       }),
-      checkColor: MaterialStateProperty.all(Colors.black87),
+      checkColor: MaterialStateProperty.all(Colors.white),
     ),
     radioTheme: RadioThemeData(
       fillColor: MaterialStateProperty.resolveWith((states) {
@@ -172,7 +172,7 @@ class AppTheme {
     sliderTheme: SliderThemeData(
       activeTrackColor: primaryColor,
       inactiveTrackColor: primaryColor.withOpacity(0.3),
-      thumbColor: darkYellow,
+      thumbColor: darkRed,
       overlayColor: primaryColor.withOpacity(0.2),
     ),
     progressIndicatorTheme: ProgressIndicatorThemeData(
@@ -181,7 +181,7 @@ class AppTheme {
       circularTrackColor: primaryColor.withOpacity(0.3),
     ),
     snackBarTheme: SnackBarThemeData(
-      backgroundColor: darkYellow,
+      backgroundColor: darkRed,
       contentTextStyle: const TextStyle(
         color: Colors.white,
         fontWeight: FontWeight.w500,
