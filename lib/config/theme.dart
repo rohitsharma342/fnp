@@ -1,32 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AppTheme {
-  // Primary red color palette
-  static const Color primaryColor = Color(0xFFDC2626); // Modern red
-  static const Color secondaryColor = Color(0xFFEF4444); // Lighter red
-  static const Color accentColor = Color(0xFFFEE2E2); // Very light red
-  static const Color backgroundColor = Color(0xFFFEFEFE); // Clean white
+  // Primary red color palette - Enhanced red theme
+  static const Color primaryColor = Color(0xFFE53E3E); // Vibrant red
+  static const Color secondaryColor = Color(0xFFFC8181); // Lighter red
+  static const Color accentColor = Color(0xFFFED7D7); // Very light red
+  static const Color backgroundColor = Color(0xFFFFFAFA); // Warm white
   static const Color surfaceColor = Colors.white;
-  static const Color textPrimary = Color(0xFF1F2937); // Dark gray
-  static const Color textSecondary = Color(0xFF6B7280); // Medium gray
-  static const Color successColor = Color(0xFF10B981); // Green
-  static const Color errorColor = Color(0xFFDC2626); // Red for errors
-  static const Color warningColor = Color(0xFFF59E0B); // Amber
-  static const Color darkRed = Color(0xFF991B1B); // Dark red
-  static const Color lightRed = Color(0xFFFEF2F2); // Very light red background
-  static const Color mediumRed = Color(0xFFEF4444); // Medium red
+  static const Color textPrimary = Color(0xFF2D3748); // Dark gray
+  static const Color textSecondary = Color(0xFF718096); // Medium gray
+  static const Color successColor = Color(0xFF38A169); // Green
+  static const Color errorColor = Color(0xFFE53E3E); // Red for errors
+  static const Color warningColor = Color(0xFFD69E2E); // Amber
+  static const Color darkRed = Color(0xFF9B2C2C); // Dark red
+  static const Color lightRed = Color(0xFFFFF5F5); // Very light red background
+  static const Color mediumRed = Color(0xFFE53E3E); // Medium red
   
-  // Additional red shades for variety
-  static const Color redShade50 = Color(0xFFFEF2F2);
-  static const Color redShade100 = Color(0xFFFEE2E2);
-  static const Color redShade200 = Color(0xFFFECACA);
-  static const Color redShade300 = Color(0xFFFCA5A5);
-  static const Color redShade400 = Color(0xFFF87171);
-  static const Color redShade500 = Color(0xFFEF4444);
-  static const Color redShade600 = Color(0xFFDC2626);
-  static const Color redShade700 = Color(0xFFB91C1C);
-  static const Color redShade800 = Color(0xFF991B1B);
-  static const Color redShade900 = Color(0xFF7F1D1D);
+  // Enhanced red shades for variety
+  static const Color redShade50 = Color(0xFFFFF5F5);
+  static const Color redShade100 = Color(0xFFFED7D7);
+  static const Color redShade200 = Color(0xFFFEB2B2);
+  static const Color redShade300 = Color(0xFFFC8181);
+  static const Color redShade400 = Color(0xFFF56565);
+  static const Color redShade500 = Color(0xFFE53E3E);
+  static const Color redShade600 = Color(0xFFC53030);
+  static const Color redShade700 = Color(0xFF9B2C2C);
+  static const Color redShade800 = Color(0xFF822727);
+  static const Color redShade900 = Color(0xFF63171B);
 
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
@@ -54,7 +55,7 @@ class AppTheme {
       foregroundColor: textPrimary,
       elevation: 0,
       centerTitle: true,
-      shadowColor: primaryColor.withOpacity(0.08),
+      shadowColor: primaryColor.withOpacity(0.1),
       titleTextStyle: const TextStyle(
         color: textPrimary,
         fontSize: 18,
@@ -74,40 +75,40 @@ class AppTheme {
       style: ElevatedButton.styleFrom(
         backgroundColor: primaryColor,
         foregroundColor: Colors.white,
-        elevation: 2,
-        shadowColor: primaryColor.withOpacity(0.25),
-        padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 16),
+        elevation: 3,
+        shadowColor: primaryColor.withOpacity(0.3),
+        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(16),
         ),
         textStyle: const TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w600,
           letterSpacing: -0.3,
         ),
-        minimumSize: const Size(0, 52),
+        minimumSize: const Size(0, 54),
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
         foregroundColor: darkRed,
-        side: const BorderSide(color: darkRed, width: 1.5),
-        padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 16),
+        side: const BorderSide(color: darkRed, width: 2),
+        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(16),
         ),
         textStyle: const TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w600,
           letterSpacing: -0.3,
         ),
-        minimumSize: const Size(0, 52),
+        minimumSize: const Size(0, 54),
       ),
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         foregroundColor: darkRed,
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         textStyle: const TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w500,
@@ -121,26 +122,26 @@ class AppTheme {
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: redShade50,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(16),
         borderSide: BorderSide(color: redShade200),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(16),
         borderSide: BorderSide(color: redShade200),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(color: primaryColor, width: 2),
+        borderRadius: BorderRadius.circular(16),
+        borderSide: const BorderSide(color: primaryColor, width: 2.5),
       ),
       errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(color: errorColor, width: 1.5),
+        borderRadius: BorderRadius.circular(16),
+        borderSide: const BorderSide(color: errorColor, width: 2),
       ),
       focusedErrorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(color: errorColor, width: 2),
+        borderRadius: BorderRadius.circular(16),
+        borderSide: const BorderSide(color: errorColor, width: 2.5),
       ),
       hintStyle: TextStyle(
         color: textSecondary,
@@ -155,20 +156,20 @@ class AppTheme {
     ),
     cardTheme: CardThemeData(
       color: surfaceColor,
-      elevation: 1,
-      shadowColor: primaryColor.withOpacity(0.08),
+      elevation: 2,
+      shadowColor: primaryColor.withOpacity(0.1),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(18),
-        side: BorderSide(color: redShade100, width: 0.5),
+        borderRadius: BorderRadius.circular(20),
+        side: BorderSide(color: redShade100, width: 1),
       ),
-      margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+      margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: surfaceColor,
       selectedItemColor: primaryColor,
       unselectedItemColor: textSecondary,
       type: BottomNavigationBarType.fixed,
-      elevation: 12,
+      elevation: 15,
       selectedLabelStyle: const TextStyle(
         fontWeight: FontWeight.w600,
         fontSize: 12,
@@ -182,7 +183,7 @@ class AppTheme {
     ),
     chipTheme: ChipThemeData(
       backgroundColor: redShade50,
-      selectedColor: redShade200,
+      selectedColor: redShade300,
       labelStyle: TextStyle(
         color: darkRed,
         fontWeight: FontWeight.w500,
@@ -192,23 +193,23 @@ class AppTheme {
         color: Colors.white,
         fontWeight: FontWeight.w600,
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(28),
       ),
-      side: BorderSide(color: redShade300, width: 1),
-      elevation: 0,
-      pressElevation: 1,
+      side: BorderSide(color: redShade300, width: 1.5),
+      elevation: 1,
+      pressElevation: 2,
     ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: primaryColor,
       foregroundColor: Colors.white,
-      elevation: 4,
-      focusElevation: 6,
-      hoverElevation: 6,
-      highlightElevation: 8,
+      elevation: 6,
+      focusElevation: 8,
+      hoverElevation: 8,
+      highlightElevation: 10,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(20),
       ),
     ),
     switchTheme: SwitchThemeData(
@@ -234,7 +235,7 @@ class AppTheme {
       }),
       checkColor: MaterialStateProperty.all(Colors.white),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(5),
       ),
     ),
     radioTheme: RadioThemeData(
@@ -249,7 +250,7 @@ class AppTheme {
       activeTrackColor: primaryColor,
       inactiveTrackColor: redShade200,
       thumbColor: darkRed,
-      overlayColor: primaryColor.withOpacity(0.15),
+      overlayColor: primaryColor.withOpacity(0.2),
       valueIndicatorColor: darkRed,
       valueIndicatorTextStyle: const TextStyle(
         color: Colors.white,
@@ -269,15 +270,15 @@ class AppTheme {
         fontSize: 15,
       ),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(14),
       ),
       behavior: SnackBarBehavior.floating,
-      elevation: 4,
+      elevation: 6,
       actionTextColor: redShade200,
     ),
     dividerTheme: DividerThemeData(
       color: redShade200,
-      thickness: 0.8,
+      thickness: 1,
       space: 1,
     ),
     listTileTheme: ListTileThemeData(
@@ -287,9 +288,9 @@ class AppTheme {
       selectedTileColor: redShade50,
       selectedColor: primaryColor,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(14),
       ),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
     ),
     tabBarTheme: TabBarTheme(
       labelColor: primaryColor,
@@ -306,7 +307,7 @@ class AppTheme {
         letterSpacing: -0.3,
       ),
       indicator: UnderlineTabIndicator(
-        borderSide: BorderSide(color: primaryColor, width: 3),
+        borderSide: BorderSide(color: primaryColor, width: 3.5),
         insets: const EdgeInsets.symmetric(horizontal: 20),
       ),
     ),
@@ -314,16 +315,16 @@ class AppTheme {
       backgroundColor: surfaceColor,
       modalBackgroundColor: surfaceColor,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
       ),
-      elevation: 8,
-      modalElevation: 16,
+      elevation: 10,
+      modalElevation: 20,
     ),
     dialogTheme: DialogTheme(
       backgroundColor: surfaceColor,
-      elevation: 8,
+      elevation: 10,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(24),
       ),
       titleTextStyle: TextStyle(
         color: textPrimary,
@@ -349,121 +350,121 @@ class AppTheme {
     textTheme: TextTheme(
       displayLarge: TextStyle(
         color: textPrimary,
-        fontSize: 32,
+        fontSize: 34,
         fontWeight: FontWeight.w700,
-        letterSpacing: -1.0,
+        letterSpacing: -1.2,
         height: 1.2,
       ),
       displayMedium: TextStyle(
         color: textPrimary,
-        fontSize: 28,
+        fontSize: 30,
+        fontWeight: FontWeight.w600,
+        letterSpacing: -1.0,
+        height: 1.3,
+      ),
+      displaySmall: TextStyle(
+        color: textPrimary,
+        fontSize: 26,
         fontWeight: FontWeight.w600,
         letterSpacing: -0.8,
         height: 1.3,
       ),
-      displaySmall: TextStyle(
+      headlineLarge: TextStyle(
         color: textPrimary,
         fontSize: 24,
         fontWeight: FontWeight.w600,
         letterSpacing: -0.6,
         height: 1.3,
       ),
-      headlineLarge: TextStyle(
+      headlineMedium: TextStyle(
         color: textPrimary,
         fontSize: 22,
         fontWeight: FontWeight.w600,
         letterSpacing: -0.5,
-        height: 1.3,
+        height: 1.4,
       ),
-      headlineMedium: TextStyle(
+      headlineSmall: TextStyle(
         color: textPrimary,
         fontSize: 20,
         fontWeight: FontWeight.w600,
         letterSpacing: -0.4,
         height: 1.4,
       ),
-      headlineSmall: TextStyle(
+      titleLarge: TextStyle(
         color: textPrimary,
         fontSize: 18,
         fontWeight: FontWeight.w600,
         letterSpacing: -0.3,
         height: 1.4,
       ),
-      titleLarge: TextStyle(
+      titleMedium: TextStyle(
         color: textPrimary,
         fontSize: 16,
         fontWeight: FontWeight.w600,
         letterSpacing: -0.2,
-        height: 1.4,
-      ),
-      titleMedium: TextStyle(
-        color: textPrimary,
-        fontSize: 14,
-        fontWeight: FontWeight.w600,
-        letterSpacing: -0.1,
         height: 1.4,
       ),
       titleSmall: TextStyle(
         color: textSecondary,
-        fontSize: 12,
+        fontSize: 14,
         fontWeight: FontWeight.w600,
-        letterSpacing: 0.1,
+        letterSpacing: -0.1,
         height: 1.4,
       ),
       bodyLarge: TextStyle(
         color: textPrimary,
-        fontSize: 16,
+        fontSize: 17,
         fontWeight: FontWeight.w400,
-        letterSpacing: -0.2,
+        letterSpacing: -0.3,
         height: 1.5,
       ),
       bodyMedium: TextStyle(
         color: textPrimary,
-        fontSize: 14,
+        fontSize: 15,
         fontWeight: FontWeight.w400,
-        letterSpacing: -0.1,
+        letterSpacing: -0.2,
         height: 1.5,
       ),
       bodySmall: TextStyle(
         color: textSecondary,
-        fontSize: 12,
+        fontSize: 13,
         fontWeight: FontWeight.w400,
-        letterSpacing: 0.0,
+        letterSpacing: -0.1,
         height: 1.4,
       ),
       labelLarge: TextStyle(
         color: darkRed,
-        fontSize: 14,
+        fontSize: 15,
         fontWeight: FontWeight.w600,
-        letterSpacing: -0.1,
+        letterSpacing: -0.2,
         height: 1.4,
       ),
       labelMedium: TextStyle(
         color: darkRed,
-        fontSize: 12,
+        fontSize: 13,
         fontWeight: FontWeight.w500,
-        letterSpacing: 0.0,
+        letterSpacing: -0.1,
         height: 1.3,
       ),
       labelSmall: TextStyle(
         color: textSecondary,
-        fontSize: 10,
+        fontSize: 11,
         fontWeight: FontWeight.w500,
-        letterSpacing: 0.1,
+        letterSpacing: 0.0,
         height: 1.3,
       ),
     ),
   );
 
-  // Dark theme with red accents
+  // Enhanced dark theme with red accents
   static ThemeData darkTheme = ThemeData(
     useMaterial3: true,
     brightness: Brightness.dark,
     colorScheme: ColorScheme.dark(
       primary: redShade400,
       secondary: redShade300,
-      surface: const Color(0xFF1F1F1F),
-      background: const Color(0xFF121212),
+      surface: const Color(0xFF1A1A1A),
+      background: const Color(0xFF0F0F0F),
       error: redShade400,
       onPrimary: Colors.white,
       onSecondary: Colors.white,
@@ -476,11 +477,11 @@ class AppTheme {
       secondaryContainer: redShade900,
       onSecondaryContainer: redShade200,
     ),
-    scaffoldBackgroundColor: const Color(0xFF121212),
+    scaffoldBackgroundColor: const Color(0xFF0F0F0F),
     fontFamily: 'SF Pro Display',
   );
 
-  // Utility methods for red color variations
+  // Enhanced utility methods for red color variations
   static Color getRedShade(int shade) {
     switch (shade) {
       case 50: return redShade50;
@@ -514,6 +515,38 @@ class AppTheme {
       colors: [redShade50, redShade100],
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
+    );
+  }
+
+  static LinearGradient getVibrantRedGradient() {
+    return LinearGradient(
+      colors: [redShade500, redShade700],
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+    );
+  }
+
+  static LinearGradient getSubtleRedGradient() {
+    return LinearGradient(
+      colors: [redShade100, redShade200],
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+    );
+  }
+
+  static BoxShadow getRedShadow({double opacity = 0.15, double blurRadius = 8}) {
+    return BoxShadow(
+      color: primaryColor.withOpacity(opacity),
+      blurRadius: blurRadius,
+      offset: const Offset(0, 4),
+    );
+  }
+
+  static BoxShadow getElevatedRedShadow() {
+    return BoxShadow(
+      color: primaryColor.withOpacity(0.25),
+      blurRadius: 12,
+      offset: const Offset(0, 6),
     );
   }
 }
