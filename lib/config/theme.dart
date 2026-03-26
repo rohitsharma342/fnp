@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  static const Color primaryColor = Color(0xFF9D00BD);
-  static const Color secondaryColor = Color(0xFFE91E63);
-  static const Color accentColor = Color(0xFFFFB6C1);
-  static const Color backgroundColor = Color(0xFFF8F5FA);
+  static const Color primaryColor = Color(0xFFFFC107);
+  static const Color secondaryColor = Color(0xFFFFD54F);
+  static const Color accentColor = Color(0xFFFFF59D);
+  static const Color backgroundColor = Color(0xFFFFFDE7);
   static const Color surfaceColor = Colors.white;
   static const Color textPrimary = Color(0xFF2D2D2D);
   static const Color textSecondary = Color(0xFF757575);
@@ -20,8 +20,8 @@ class AppTheme {
       surface: surfaceColor,
       background: backgroundColor,
       error: errorColor,
-      onPrimary: Colors.white,
-      onSecondary: Colors.white,
+      onPrimary: Colors.black87,
+      onSecondary: Colors.black87,
       onSurface: textPrimary,
       onBackground: textPrimary,
     ),
@@ -41,7 +41,7 @@ class AppTheme {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: primaryColor,
-        foregroundColor: Colors.white,
+        foregroundColor: Colors.black87,
         elevation: 2,
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
         shape: RoundedRectangleBorder(
