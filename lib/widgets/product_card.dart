@@ -3,45 +3,82 @@ import 'package:provider/provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../config/theme.dart';
 import '../config/routes.dart';
+import '../config/romantic_colors.dart';
 import '../models/product_model.dart';
 import '../providers/favorites_provider.dart';
 import '../providers/cart_provider.dart';
+import 'romantic_card.dart';
 
-class ProductCard extends StatelessWidget {
+class ProductCard extends StatefulWidget {
   final Product product;
 
   const ProductCard({super.key, required this.product});
 
   @override
+  State<ProductCard> createState() => _ProductCardState();
+}
+
+class _ProductCardState extends State<ProductCard>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _scaleAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 200),
+      vsync: this,
+    );
+    _scaleAnimation = Tween<double>(
+      begin: 1.0,
+      end: 0.95,
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInOut,
+    ));
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(
-          context,
-          AppRoutes.productDetails,
-          arguments: product,
+    return AnimatedBuilder(
+      animation: _scaleAnimation,
+      builder: (context, child) {
+        return Transform.scale(
+          scale: _scaleAnimation.value,
+          child: GestureDetector(
+            onTapDown: (_) => _controller.forward(),
+            onTapUp: (_) {
+              _controller.reverse();
+              Navigator.pushNamed(
+                context,
+                AppRoutes.productDetails,
+                arguments: widget.product,
+              );
+            },
+            onTapCancel: () => _controller.reverse(),
+            child: RomanticCard(
+              showGlow: true,
+              showShimmer: false,
+              margin: const EdgeInsets.all(4),
+              padding: EdgeInsets.zero,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildImageSection(context),
+                  _buildInfoSection(context),
+                ],
+              ),
+            ),
+          ),
         );
       },
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.05),
-              blurRadius: 10,
-              offset: const Offset(0, 2),
-            ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildImageSection(context),
-            _buildInfoSection(context),
-          ],
-        ),
-      ),
     );
   }
 
@@ -49,23 +86,34 @@ class ProductCard extends StatelessWidget {
     return Stack(
       children: [
         ClipRRect(
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
           child: CachedNetworkImage(
-            imageUrl: product.images.first,
+            imageUrl: widget.product.images.first,
             height: 140,
             width: double.infinity,
             fit: BoxFit.cover,
             placeholder: (context, url) => Container(
               height: 140,
-              color: Colors.grey.shade200,
+              decoration: BoxDecoration(
+                gradient: RomanticColors.romanticGradient,
+              ),
               child: const Center(
-                child: CircularProgressIndicator(strokeWidth: 2),
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                ),
               ),
             ),
             errorWidget: (context, url, error) => Container(
               height: 140,
-              color: Colors.grey.shade200,
-              child: const Icon(Icons.image_not_supported),
+              decoration: BoxDecoration(
+                gradient: RomanticColors.romanticGradient,
+              ),
+              child: const Icon(
+                Icons.image_not_supported,
+                color: Colors.white,
+                size: 40,
+              ),
             ),
           ),
         ),
@@ -74,43 +122,51 @@ class ProductCard extends StatelessWidget {
           right: 8,
           child: Consumer<FavoritesProvider>(
             builder: (context, favorites, _) {
-              final isFavorite = favorites.isFavorite(product.id);
+              final isFavorite = favorites.isFavorite(widget.product.id);
               return GestureDetector(
-                onTap: () => favorites.toggleFavorite(product.id),
+                onTap: () => favorites.toggleFavorite(widget.product.id),
                 child: Container(
-                  padding: const EdgeInsets.all(6),
+                  padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Colors.white.withOpacity(0.9),
                     shape: BoxShape.circle,
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
-                        blurRadius: 4,
+                        color: RomanticColors.roseGold.withOpacity(0.3),
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
                       ),
                     ],
                   ),
                   child: Icon(
                     isFavorite ? Icons.favorite : Icons.favorite_border,
                     size: 18,
-                    color: isFavorite ? Colors.red : AppTheme.textSecondary,
+                    color: isFavorite ? RomanticColors.romanticRed : RomanticColors.dustyRose,
                   ),
                 ),
               );
             },
           ),
         ),
-        if (product.discountPercentage > 0)
+        if (widget.product.discountPercentage > 0)
           Positioned(
             top: 8,
             left: 8,
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
               decoration: BoxDecoration(
-                color: AppTheme.errorColor,
-                borderRadius: BorderRadius.circular(12),
+                gradient: RomanticColors.heartGradient,
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: RomanticColors.softCoral.withOpacity(0.4),
+                    blurRadius: 6,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
               ),
               child: Text(
-                '${product.discountPercentage.toInt()}% OFF',
+                '${widget.product.discountPercentage.toInt()}% OFF',
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 10,
@@ -119,12 +175,12 @@ class ProductCard extends StatelessWidget {
               ),
             ),
           ),
-        if (!product.isInStock)
+        if (!widget.product.isInStock)
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.5),
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+                color: Colors.black.withOpacity(0.6),
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
               ),
               child: const Center(
                 child: Text(
@@ -150,35 +206,36 @@ class ProductCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              product.name,
+              widget.product.name,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 14,
+                color: RomanticColors.dustyRose,
               ),
             ),
             const SizedBox(height: 4),
             Row(
               children: [
-                const Icon(
+                Icon(
                   Icons.star,
                   size: 14,
-                  color: Colors.amber,
+                  color: RomanticColors.champagne,
                 ),
                 const SizedBox(width: 4),
                 Text(
-                  product.rating.toString(),
+                  widget.product.rating.toString(),
                   style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
                 Text(
-                  ' (${product.reviewCount})',
+                  ' (${widget.product.reviewCount})',
                   style: TextStyle(
                     fontSize: 12,
-                    color: AppTheme.textSecondary,
+                    color: RomanticColors.dustyRose.withOpacity(0.7),
                   ),
                 ),
               ],
@@ -191,40 +248,51 @@ class ProductCard extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if (product.originalPrice != null)
+                    if (widget.product.originalPrice != null)
                       Text(
-                        '\$${product.originalPrice!.toStringAsFixed(2)}',
+                        '\$${widget.product.originalPrice!.toStringAsFixed(2)}',
                         style: TextStyle(
                           fontSize: 12,
-                          color: AppTheme.textSecondary,
+                          color: RomanticColors.dustyRose.withOpacity(0.6),
                           decoration: TextDecoration.lineThrough,
                         ),
                       ),
                     Text(
-                      '\$${product.price.toStringAsFixed(2)}',
+                      '\$${widget.product.price.toStringAsFixed(2)}',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: AppTheme.primaryColor,
+                        color: RomanticColors.romanticRed,
                       ),
                     ),
                   ],
                 ),
                 Consumer<CartProvider>(
                   builder: (context, cart, _) {
-                    final inCart = cart.isInCart(product.id);
+                    final inCart = cart.isInCart(widget.product.id);
                     return GestureDetector(
-                      onTap: product.isInStock
+                      onTap: widget.product.isInStock
                           ? () {
                               if (!inCart) {
-                                cart.addToCart(product);
+                                cart.addToCart(widget.product);
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: const Text('Added to cart'),
+                                    content: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.favorite,
+                                          color: RomanticColors.romanticRed,
+                                          size: 20,
+                                        ),
+                                        const SizedBox(width: 8),
+                                        const Text('Added with love'),
+                                      ],
+                                    ),
                                     duration: const Duration(seconds: 1),
                                     behavior: SnackBarBehavior.floating,
+                                    backgroundColor: RomanticColors.dustyRose,
                                     shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
+                                      borderRadius: BorderRadius.circular(15),
                                     ),
                                   ),
                                 );
@@ -232,17 +300,25 @@ class ProductCard extends StatelessWidget {
                             }
                           : null,
                       child: Container(
-                        padding: const EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
-                          color: inCart
-                              ? AppTheme.successColor
-                              : AppTheme.primaryColor,
-                          borderRadius: BorderRadius.circular(8),
+                          gradient: inCart
+                              ? LinearGradient(
+                                  colors: [RomanticColors.dustyRose, RomanticColors.roseGold],
+                                )
+                              : RomanticColors.heartGradient,
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: (inCart ? RomanticColors.dustyRose : RomanticColors.softCoral)
+                                  .withOpacity(0.3),
+                              blurRadius: 6,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
                         ),
                         child: Icon(
-                          inCart
-                              ? Icons.check
-                              : Icons.add_shopping_cart,
+                          inCart ? Icons.check : Icons.add_shopping_cart,
                           size: 18,
                           color: Colors.white,
                         ),

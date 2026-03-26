@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'romantic_colors.dart';
 
 class AppTheme {
   // Primary green color palette - Enhanced green theme
@@ -28,6 +29,81 @@ class AppTheme {
   static const Color greenShade700 = Color(0xFF276749);
   static const Color greenShade800 = Color(0xFF22543D);
   static const Color greenShade900 = Color(0xFF1C4532);
+
+  // Romantic theme integration
+  static ThemeData get romanticTheme => lightTheme.copyWith(
+    colorScheme: lightTheme.colorScheme.copyWith(
+      primary: RomanticColors.dustyRose,
+      secondary: RomanticColors.roseGold,
+      surface: RomanticColors.warmCream,
+      background: RomanticColors.blushPink,
+      tertiary: RomanticColors.softPeach,
+    ),
+    scaffoldBackgroundColor: RomanticColors.warmCream,
+    cardTheme: CardThemeData(
+      color: Colors.white,
+      elevation: 8,
+      shadowColor: RomanticColors.roseGold.withOpacity(0.3),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+        side: BorderSide(color: RomanticColors.blushPink, width: 1),
+      ),
+      margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: RomanticColors.dustyRose,
+        foregroundColor: Colors.white,
+        elevation: 8,
+        shadowColor: RomanticColors.roseGold.withOpacity(0.5),
+        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(25),
+        ),
+        textStyle: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+          letterSpacing: 0.5,
+        ),
+        minimumSize: const Size(0, 54),
+      ),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: RomanticColors.softPeach.withOpacity(0.3),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(20),
+        borderSide: BorderSide(color: RomanticColors.blushPink),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(20),
+        borderSide: BorderSide(color: RomanticColors.roseGold.withOpacity(0.5)),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(20),
+        borderSide: BorderSide(color: RomanticColors.dustyRose, width: 2.5),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(20),
+        borderSide: const BorderSide(color: errorColor, width: 2),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(20),
+        borderSide: const BorderSide(color: errorColor, width: 2.5),
+      ),
+      hintStyle: TextStyle(
+        color: RomanticColors.dustyRose.withOpacity(0.7),
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+      ),
+      labelStyle: TextStyle(
+        color: RomanticColors.dustyRose,
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+      ),
+    ),
+  );
 
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
@@ -546,6 +622,19 @@ class AppTheme {
     return BoxShadow(
       color: primaryColor.withOpacity(0.25),
       blurRadius: 12,
+      offset: const Offset(0, 6),
+    );
+  }
+
+  // Romantic theme utilities
+  static LinearGradient getRomanticGradient() {
+    return RomanticColors.romanticGradient;
+  }
+
+  static BoxShadow getRomanticShadow({double opacity = 0.2, double blurRadius = 12}) {
+    return BoxShadow(
+      color: RomanticColors.roseGold.withOpacity(opacity),
+      blurRadius: blurRadius,
       offset: const Offset(0, 6),
     );
   }
